@@ -5,7 +5,7 @@ module InferredSlug
     class InstallGenerator < ::Rails::Generators::Base
 
       desc "This generator installs inferred slugs on all your models"
-      source_root File.expand_path('templates', __FILE__)
+      source_root File.expand_path('../templates', __FILE__)
 
       def copy_slug_hook
         say_status "copying", "slug global hook", :green
