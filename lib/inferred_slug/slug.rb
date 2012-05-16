@@ -2,7 +2,7 @@ module InferredSlug
   module Slug
 
     def slug
-      if !respond_to?(:name) || name.empty?
+      if not respond_to?(:name) or name.empty?
         id
       else
         "#{id}-#{name}".to_url
