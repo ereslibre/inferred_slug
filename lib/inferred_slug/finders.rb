@@ -3,7 +3,7 @@ module InferredSlug
 
     def find_by_slug(*args)
       record = find(*args)
-      if record && record.respond_to? :slug
+      if record && record.respond_to?(:slug)
         return nil unless record.slug == args.first
       end
       record

@@ -12,4 +12,5 @@ Gem::Specification.new do |s|
   s.homepage    = 'http://www.ereslibre.es/'
 
   s.add_dependency('stringex')
+  s.add_dependency('activerecord')
 end
