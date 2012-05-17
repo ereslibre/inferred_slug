@@ -1,3 +1,5 @@
+require 'stringex'
+
 module InferredSlug
   module Slug
 
