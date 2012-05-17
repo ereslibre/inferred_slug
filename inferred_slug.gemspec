@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.authors     = ['Rafael Fernández López']
   s.email       = 'ereslibre@ereslibre.es'
   s.files       = `git ls-files`.split("\n")
-  s.homepage    = 'http://www.ereslibre.es/'
+  s.homepage    = 'https://github.com/ereslibre/inferred_slug'
 
   s.add_dependency('stringex')
   s.add_dependency('activerecord')
