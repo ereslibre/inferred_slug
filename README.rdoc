@@ -38,7 +38,7 @@ able to work without a database. So I implemented it. Is dead simple.
 
 1. You cannot set permalinks with this slugs. Since the slug itself is inferred
    from the data of the record, you cannot relay on that (unless that field is
-   unmutable by design on your application) to provide permalinks.
+   immutable by design on your application) to provide permalinks.
 
 2. The ID is shown. Resources on the location bar is of the form '3-test-foo'.
    Given the design, there is no way of removing it.
