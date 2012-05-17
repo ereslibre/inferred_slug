@@ -70,3 +70,15 @@ you want to use that as the slug:
       "#{id}-#{title}"
     end
   end
+
+== Working with it
+
+You have now two methods that will allow you to search by slugs:
+
+1. find_by_slug
+2. find_by_slug!
+
+They are finder methods, so they are also in collections. Examples:
+
+1. Client.find_by_slug '1-john-doe'
+2. Client.users.find_by_slug '54-alice-smith'
