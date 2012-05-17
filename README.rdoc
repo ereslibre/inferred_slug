@@ -1,0 +1,72 @@
+== What is Inferred Slug ?
+
+Most slug engines require you to modify your database schema to save slugs in
+it. The idea behind Inferred Slug is that slugs can be inferred and treated as
+logic, instead of being treated as data.
+
+This gem is compatible with the rest of slug engines, as far as I know. If you
+find any incompatibility, I'd be glad to hear about it, so I can fix it.
+
+== Why yet another slug engine ?
+
+I started to search for gems providing slug support. I have to say there are
+really great slug engines out there. However, I couldn't find any slug engine
+able to work without a database. So I implemented it. Is dead simple.
+
+== Advantages
+
+1. Avoid duplicated data in your database. You need to take care of the slugs
+   in the case they aren't permanent, by installing ActiveRecord callbacks for
+   updating it. Forgetting installing a callback could mean that you have
+   inconsistent and misleading information (e.g. '/users/23-john-doee' could
+   actually show user 'John Doe' because he updated his profile to fix the typo).
+
+2. Prettify URL's.
+
+3. Secure your ID's. Avoid the typical random script that will just increase an
+   ID, and will find out random information about your users/clients.
+
+4. Save space in database. While the database grows, slugs are also taking its
+   part in consuming space.
+
+5. Compatible with other slug engines. You can still use friendly_id wherever
+   you want (or any other slug engine). You can decide on which models you want
+   to use Inferred Slugs, and avoid saving slugs of that particular model in the
+   database.
+
+== Disadvantages
+
+1. You cannot set permalinks with this slugs. Since the slug itself is inferred
+   from the data of the record, you cannot relay on that (unless that field is
+   unmutable by design on your application) to provide permalinks.
+
+2. The ID is shown. Resources on the location bar is of the form '3-test-foo'.
+   Given the design, there is no way of removing it.
+
+== Installing
+
+1. Add 'inferred_slug' to your Gemfile.
+2. Optional: run 'rails g inferred_slug:install'
+
+The optional step will include slugs on all your models automatically, by
+installing an initializer that adds slugs to ActiveRecord::Base, superclass of
+all your models. Thus, all your models magically have slugs.
+
+If you want to specify slugs on a per-model basis, you can skip step 2 (or
+delete the config/initializers/slug.rb file if you already ran it), and
+explicitly include InferredSlug::Slug on the models that you want to have slugs.
+
+== How it works
+
+Right now is very simple. It will check if your model contains a 'name' column,
+and in that case, the resource will automatically be called '#{id}-#{name}'. Now
+let's suppose you have a Post model that instead of name has a title column, and
+you want to use that as the slug:
+
+  class Post < ActiveRecord::Base
+    include InferredSlug::Slug # Only necessary if the initializer isn't installed
+
+    def slug
+      "#{id}-#{title}"
+    end
+  end
