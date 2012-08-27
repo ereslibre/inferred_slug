@@ -4,7 +4,7 @@ module InferredSlug
   module Slug
 
     def slug
-      if not respond_to?(:name) or name.empty?
+      if not respond_to?(:name) or not name or name.empty?
         id
       else
         "#{id}-#{name}".to_url
