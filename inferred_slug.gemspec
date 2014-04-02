@@ -11,6 +11,5 @@ Gem::Specification.new do |s|
   s.files       = `git ls-files`.split("\n")
   s.homepage    = 'https://github.com/ereslibre/inferred_slug'
 
-  s.add_dependency('stringex')
-  s.add_dependency('activerecord')
+  s.add_dependency 'stringex'
 end
