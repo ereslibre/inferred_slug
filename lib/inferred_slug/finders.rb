@@ -5,14 +5,14 @@ module InferredSlug
 
     def find_by_slug(*args)
       record = find(*args)
-      if record and record.respond_to?(:slug)
+      if record && record.respond_to?(:slug)
         return nil unless record.slug.to_s == args.first.to_s
       end
       record
     end
 
     def find_by_slug!(*args)
-      find_by_slug(*args) or raise ActiveRecord::RecordNotFound
+      find_by_slug(*args) || raise ActiveRecord::RecordNotFound
     end
 
   end
